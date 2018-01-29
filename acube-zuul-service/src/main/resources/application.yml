@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: zuul-service
+
+server:
+  port: 8300
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    auth-service:
+      path: /auth-service/**
+      url: http://localhost:8302
+    db-service:
+      path: /db-service/**
+      url: http://localhost:8303
+    user-service:
+      path: /user-service/**
+      url: http://localhost:8304
+      
