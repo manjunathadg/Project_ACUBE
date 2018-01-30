@@ -22,7 +22,6 @@ import io.acube.security.acubesecurityauthserver.repository.UsersRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
-	
 	@Autowired
 	private UsersRepository userRepository;
 

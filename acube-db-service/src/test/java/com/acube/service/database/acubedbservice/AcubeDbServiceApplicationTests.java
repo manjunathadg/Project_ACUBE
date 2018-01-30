@@ -1,4 +1,4 @@
-package com.acube.security.acubesecurityclient;
+package com.acube.service.database.acubedbservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AcubeSecurityClientApplicationTests {
+public class AcubeDbServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {

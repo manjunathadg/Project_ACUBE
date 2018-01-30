@@ -17,16 +17,13 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Data
+@Data @NoArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Roles {
-
-	public Roles() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Id
 	@Column(name = "id")

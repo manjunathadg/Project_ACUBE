@@ -1,13 +1,58 @@
 spring:
   application:
-    name: auth-service
+    name: uaa-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hibernateDB
+    username: postgres
+    password: manager
+    validationQQuery: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate: 
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  thymeleaf:
+    cache: false
+        
 server:
   port: 8302
+  # Use different context-path to avoid session cookie overlapping
+  context-path: /uaa
+  use-forward-headers: false
+
+# Define the Eureka server that handles service registration
 eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://localhost:8301/eureka
   instance:
-    hostname: localhost
+      hostname: localhost
+      port: 8301
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+
+# Define security
+security:
+  basic:
+    enabled: false
+  user:
+    password: password
+  ignored: /css/**,/js/**,/favicon.ico,/webjars/**
+
+logging:
+  level.org.springframework.security: DEBUG
+
+---
+spring:
+  profiles: docker
+
+server:
+  port: ${SERVICE_PORT}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${REGISTRY_URL}

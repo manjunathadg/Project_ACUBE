@@ -4,7 +4,7 @@
 * @author Manjunatha D G
 * @since 28.01.2018
 * 
-* Model Class mapped to the database table
+* Model Class mapped to the database table USERS
 */
 package io.acube.service.database.acubedbservice.model;
 

@@ -28,7 +28,7 @@ public class DBServiceResource {
 	}
 
 	/*
-	 * Method to get the User details based on the username passed
+	 * Mapping to get User details based on username
 	 */
 	@GetMapping("/{username}")
 	public User getUser(@PathVariable("username") final String username) {

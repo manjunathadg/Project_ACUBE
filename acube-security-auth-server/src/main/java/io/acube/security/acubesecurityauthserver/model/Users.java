@@ -22,9 +22,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
-@Data
+@Data @NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class Users {
@@ -88,9 +89,6 @@ public class Users {
 	@JoinTable(name="user_roles", joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="role_id"))
 	private Set<Roles> roles;
 	
-	public Users() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public Users(Users users) {
 		this.id = users.id;

@@ -14,6 +14,9 @@ import io.acube.service.database.acubedbservice.model.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
 
+	/*
+	 * Dynamic find method to find the user object based username field
+	 */
 	User findByUserName(String username);
 
 }
