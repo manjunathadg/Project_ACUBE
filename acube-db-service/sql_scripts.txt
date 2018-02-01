@@ -1,0 +1,85 @@
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+SQL Scripts for ACUBE Project
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+USERS TABLE
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ CREATE TABLE  users  (
+   id  varchar(40) NOT NULL,
+   username  varchar(50) DEFAULT NULL,
+   password  varchar(100) DEFAULT NULL,
+   first_name  varchar(100) DEFAULT NULL,
+   last_name  varchar(100) DEFAULT NULL,
+   country_code  varchar(5) DEFAULT NULL,
+   mobile  varchar(15) DEFAULT NULL,
+   profile_pic  varchar(1000) DEFAULT NULL,
+   gender  integer DEFAULT NULL,
+   dob  date DEFAULT NULL,
+   email  varchar(250) DEFAULT NULL,
+   created_by  varchar(40) DEFAULT NULL,
+   created_on  date DEFAULT NULL,
+   modified_by  varchar(40) DEFAULT NULL,
+   modified_on  date DEFAULT NULL,
+   deleted_by  varchar(40) DEFAULT NULL,
+   deleted_on  date DEFAULT NULL,
+   is_deleted  integer DEFAULT NULL
+)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Adding constraints
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ALTER TABLE users
+  ADD PRIMARY KEY (id);
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Roles table
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------  
+CREATE TABLE  roles  (
+   id  varchar(40) NOT NULL,
+   name  varchar(100) DEFAULT NULL,
+   description  varchar(40) DEFAULT NULL,
+   created_by  varchar(40) DEFAULT NULL,
+   created_on  date DEFAULT NULL,
+   modified_by  varchar(40) DEFAULT NULL,
+   modified_on  date DEFAULT NULL,
+   deleted_by  varchar(40) DEFAULT NULL,
+   deleted_on  date DEFAULT NULL,
+   is_deleted  integer DEFAULT NULL
+)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Adding constraints
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ALTER TABLE  roles
+  ADD PRIMARY KEY ( id );
+
+CREATE TABLE  user_roles  (
+   id  varchar(40) NOT NULL,
+   user_id  varchar(40) DEFAULT NULL,
+   role_id  varchar(40) DEFAULT NULL
+)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+USER ROLES TABLE
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ALTER TABLE  user_roles 
+  ADD PRIMARY KEY ( id );
+
+ALTER TABLE  user_roles
+  ADD CONSTRAINT  FKh8ciramu9cc9q3qcqiv4ue8a6  FOREIGN KEY ( role_id ) REFERENCES  roles  ( id ),
+  ADD CONSTRAINT  FKhfh9dx7w3ubf1co1vdev94g3f  FOREIGN KEY ( user_id ) REFERENCES  users  ( id );
+COMMIT;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sample Data
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO  roles  ( id ,  name ,  description ,  created_by ,  created_on ,  modified_by ,  modified_on ,  deleted_by ,  deleted_on ,  is_deleted ) VALUES
+('ABABABABABABABABABABABABABABABABABABABAA', 'USER_RW', 'Read write permission for all users', NULL, NULL, NULL, NULL, NULL, NULL, 0),
+('ABABABABABABABABABABABABABABABABABABABAB', 'ADMIN', 'For all admin activities', NULL, NULL, NULL, NULL, NULL, NULL, 0);
+
+INSERT INTO  users  ( id ,  username ,  password ,  first_name ,  last_name ,  country_code ,  mobile ,  profile_pic ,  gender ,  dob ,  email ,  created_by ,  created_on ,  modified_by ,  modified_on ,  deleted_by ,  deleted_on ,  is_deleted ) VALUES
+('ABABABABABABABABABABABABABABABABABABABAA', 'manjudg', 'manjudg', 'Manjunath', 'Gopalapura', '91', '1234567890', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+('ABABABABABABABABABABABABABABABABABABABAB', 'markh', 'markh', 'Mark', 'Henry', '91', '0987654321', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+
+INSERT INTO  user_roles_test  ( id ,  user_id ,  role_id ) VALUES
+('ABABABABABABABABABABABABABABABABABABABAA', 'ABABABABABABABABABABABABABABABABABABABAA', 'ABABABABABABABABABABABABABABABABABABABAA'),
+('ABABABABABABABABABABABABABABABABABABABAB', 'ABABABABABABABABABABABABABABABABABABABAB', 'ABABABABABABABABABABABABABABABABABABABAB');
+
