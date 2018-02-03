@@ -1,4 +1,4 @@
-package com.acube.service.user.acubeuserservice;
+package io.acube.service.user.acubeuserservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

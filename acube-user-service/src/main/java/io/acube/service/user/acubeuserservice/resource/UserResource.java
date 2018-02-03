@@ -22,11 +22,12 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @EnableResourceServer
 @RequestMapping("/")
-public class UserRepource {
+public class UserResource {
 	@Autowired
 	RestTemplate restTemplate;
 
 	@GetMapping("/{username}")
+	@ResponseBody
 	public String getUserProfile(@PathVariable(name = "username") final String username) {
 		String data = restTemplate.getForObject("http://db-service/rest/db/" + username, String.class);
 		return data;
